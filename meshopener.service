@@ -1,0 +1,16 @@
+[Unit]
+Description=Python Service with Venv
+After=network.target
+
+[Service]
+User=georgi
+Group=georgi
+WorkingDirectory=/home/georgi/mesh
+# Point directly to the python executable inside the venv
+ExecStart=/home/georgi/mesh/myenv/bin/python3 -u mesh-opener.py
+Restart=on-failure
+# Time to wait before restarting (crucial for USB/Serial re-init)
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
